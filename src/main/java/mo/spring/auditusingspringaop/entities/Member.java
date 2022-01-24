@@ -14,56 +14,55 @@ import java.util.Set;
 @Entity
 @Table(name = "members")
 public class Member implements Serializable {
-
-    private Long id;
-    private String firstName;
-    private String lastName;
-    private String emailId;
-    private Set<Address> addresses;
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_member")
+    private Long id;
+
+    @Column(name = "first_name", nullable = false)
+    private String firstName;
+
+    @Column(name = "last_name", nullable = false)
+    private String lastName;
+
+    @Column(name = "email_address", nullable = false)
+    private String emailId;
+
+    @OneToMany(mappedBy = "member", cascade = CascadeType.REMOVE)
+    private Set<Address> addresses;
+
+
     public Long getId() {
         return id;
     }
-
     public void setId(Long id) {
         this.id = id;
     }
 
-    @Column(name = "first_name", nullable = false)
     public String getFirstName() {
         return firstName;
     }
-
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
 
-    @Column(name = "last_name", nullable = false)
     public String getLastName() {
         return lastName;
     }
-
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
 
-    @Column(name = "email_address", nullable = false)
     public String getEmailId() {
         return emailId;
     }
-
     public void setEmailId(String emailId) {
         this.emailId = emailId;
     }
 
-    @OneToMany(mappedBy = "member", cascade = CascadeType.REMOVE)
     public Set<Address> getAddresses() {
         return addresses;
     }
-
     public void setAddresses(Set<Address> addresses) {
         this.addresses = addresses;
     }
