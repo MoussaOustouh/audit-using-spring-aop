@@ -26,7 +26,7 @@ public class MemberServiceImpl implements IMemberService {
     public Optional<Member> findById(Long id) {
         Optional<Member> memberOptional = memberRepository.findById(id);
         if(memberOptional.isEmpty()){
-            throw new NotFoundException(ErrorMessages.NO_RECORD_FOUND.getErrorMessage());
+            throw new NotFoundException(ErrorMessages.NO_RECORD_FOUND.getErrorMessage() + " Member { id : "+id+" }");
         }
         return memberOptional;
     }
@@ -47,7 +47,12 @@ public class MemberServiceImpl implements IMemberService {
     }
 
     @Override
-    public void delete(Long id) {
-        this.memberRepository.deleteById(id);
+    public void deleteById(Long id) {
+        if(this.memberRepository.existsById(id)){
+            this.memberRepository.deleteById(id);
+        }
+        else{
+            throw new NotFoundException(ErrorMessages.NO_RECORD_FOUND.getErrorMessage() + " Member { id : "+id+" }");
+        }
     }
 }

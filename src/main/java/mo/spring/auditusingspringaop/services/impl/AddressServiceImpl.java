@@ -24,7 +24,7 @@ public class AddressServiceImpl implements IAddressService {
     public Optional<Address> findById(Long id) {
         Optional<Address> optionalAddress = this.addressRepository.findById(id);
         if(optionalAddress.isEmpty()){
-            throw new NotFoundException(ErrorMessages.NO_RECORD_FOUND.getErrorMessage());
+            throw new NotFoundException(ErrorMessages.NO_RECORD_FOUND.getErrorMessage() + " Address { id : "+id+" }");
         }
         return optionalAddress;
     }
@@ -45,7 +45,12 @@ public class AddressServiceImpl implements IAddressService {
     }
 
     @Override
-    public void delete(Long id) {
-        this.addressRepository.deleteById(id);
+    public void deleteById(Long id) {
+        if(addressRepository.existsById(id)){
+            addressRepository.deleteById(id);
+        }
+        else{
+            throw new NotFoundException(ErrorMessages.NO_RECORD_FOUND.getErrorMessage() + " Address { id : "+id+" }");
+        }
     }
 }
