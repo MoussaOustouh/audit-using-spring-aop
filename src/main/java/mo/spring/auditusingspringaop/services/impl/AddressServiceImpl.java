@@ -21,12 +21,12 @@ public class AddressServiceImpl implements IAddressService {
     }
 
     @Override
-    public Optional<Address> findById(Long id) {
+    public Address findById(Long id) {
         Optional<Address> optionalAddress = this.addressRepository.findById(id);
         if(optionalAddress.isEmpty()){
             throw new NotFoundException(ErrorMessages.NO_RECORD_FOUND.getErrorMessage() + " Address { id : "+id+" }");
         }
-        return optionalAddress;
+        return optionalAddress.get();
     }
 
     @Override

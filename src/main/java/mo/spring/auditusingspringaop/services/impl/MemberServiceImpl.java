@@ -23,12 +23,12 @@ public class MemberServiceImpl implements IMemberService {
     }
 
     @Override
-    public Optional<Member> findById(Long id) {
+    public Member findById(Long id) {
         Optional<Member> memberOptional = memberRepository.findById(id);
         if(memberOptional.isEmpty()){
             throw new NotFoundException(ErrorMessages.NO_RECORD_FOUND.getErrorMessage() + " Member { id : "+id+" }");
         }
-        return memberOptional;
+        return memberOptional.get();
     }
 
     @Override
