@@ -7,21 +7,23 @@ import mo.spring.auditusingspringaop.exceptions.constants.ErrorMessages;
 import mo.spring.auditusingspringaop.repositories.MemberRepository;
 import mo.spring.auditusingspringaop.services.IMemberService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class MemberServiceImpl implements IMemberService {
 
-    @Autowired
     private final MemberRepository memberRepository;
 
+    @Autowired
     public MemberServiceImpl(MemberRepository memberRepository) {
         this.memberRepository = memberRepository;
     }
 
     @Override
-    public Optional<Member> findOne(Long id) {
+    public Optional<Member> findById(Long id) {
         Optional<Member> memberOptional = memberRepository.findById(id);
         if(memberOptional.isEmpty()){
             throw new NotFoundException(ErrorMessages.NO_RECORD_FOUND.getErrorMessage());
@@ -36,16 +38,16 @@ public class MemberServiceImpl implements IMemberService {
 
     @Override
     public Member save(Member entity) {
-        return null;
+        return this.memberRepository.save(entity);
     }
 
     @Override
     public Member update(Member entity) {
-        return null;
+        return this.memberRepository.save(entity);
     }
 
     @Override
     public void delete(Long id) {
-
+        this.memberRepository.deleteById(id);
     }
 }
