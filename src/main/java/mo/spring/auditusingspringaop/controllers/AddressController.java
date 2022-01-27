@@ -1,6 +1,6 @@
 package mo.spring.auditusingspringaop.controllers;
 
-import mo.spring.auditusingspringaop.entities.Address;
+import mo.spring.auditusingspringaop.dto.AddressDTO;
 import mo.spring.auditusingspringaop.services.IAddressService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -26,35 +26,33 @@ public class AddressController {
     }
 
     @GetMapping()
-    public List<Address> getAllAddresses() {
+    public List<AddressDTO> getAllAddresses() {
         return addressService.findAll();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Address> getAddressById(@PathVariable(value = "id") Long addressId) {
-        Address address = addressService.findById(addressId);
-        return ResponseEntity.ok().body(address);
+    public ResponseEntity<AddressDTO> getAddressById(@PathVariable(value = "id") Long addressId) {
+        AddressDTO addressDTO = addressService.findById(addressId);
+        return ResponseEntity.ok().body(addressDTO);
     }
 
     @PostMapping()
-    public Address createAddress(@RequestBody Address address) {
-        return addressService.save(address);
+    public ResponseEntity<AddressDTO> createAddress(@RequestBody AddressDTO addressDTO) {
+        return ResponseEntity.ok(addressService.save(addressDTO));
     }
 
-
-
     @PutMapping("/{id}")
-    public ResponseEntity<Address> updateAddress(@PathVariable(value = "id") Long addressId, @RequestBody Address addressDetails) {
-        Address address = addressService.findById(addressId);
+    public ResponseEntity<AddressDTO> updateAddress(@PathVariable(value = "id") Long addressId, @RequestBody AddressDTO addressDetails) {
+        AddressDTO addressDTO = addressService.findById(addressId);
 
-        address.setState(addressDetails.getState());
-        address.setStreet1(addressDetails.getStreet1());
-        address.setStreet2(addressDetails.getStreet2());
-        address.setCity(addressDetails.getCity());
-        address.setZip(addressDetails.getZip());
+        addressDTO.setState(addressDetails.getState());
+        addressDTO.setStreet1(addressDetails.getStreet1());
+        addressDTO.setStreet2(addressDetails.getStreet2());
+        addressDTO.setCity(addressDetails.getCity());
+        addressDTO.setZip(addressDetails.getZip());
 
-        address = addressService.save(address);
-        return ResponseEntity.ok(address);
+        addressDTO = addressService.save(addressDTO);
+        return ResponseEntity.ok(addressDTO);
     }
 
     @DeleteMapping("/{id}")

@@ -1,6 +1,6 @@
 package mo.spring.auditusingspringaop.services;
 
-import mo.spring.auditusingspringaop.entities.Member;
+import mo.spring.auditusingspringaop.dto.MemberDTO;
 
-public interface IMemberService extends IService<Member>{
+public interface IMemberService extends IService<MemberDTO>{
 }

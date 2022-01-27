@@ -8,9 +8,9 @@ public interface IService<T> {
 
     List<T> findAll();
 
-    T save(T entity);
+    T save(T dto);
 
-    T update(T entity);
+    T update(T dto);
 
     void deleteById(Long id);
 }

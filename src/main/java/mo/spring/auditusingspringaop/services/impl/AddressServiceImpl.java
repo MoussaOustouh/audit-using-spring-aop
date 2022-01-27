@@ -1,5 +1,7 @@
 package mo.spring.auditusingspringaop.services.impl;
 
+import mo.spring.auditusingspringaop.dto.AddressDTO;
+import mo.spring.auditusingspringaop.dto.mapper.IMapper;
 import mo.spring.auditusingspringaop.entities.Address;
 import mo.spring.auditusingspringaop.exceptions.NotFoundException;
 import mo.spring.auditusingspringaop.exceptions.constants.ErrorMessages;
@@ -16,32 +18,41 @@ public class AddressServiceImpl implements IAddressService {
     private final AddressRepository addressRepository;
 
     @Autowired
+    private IMapper mapper;
+
+    @Autowired
     public AddressServiceImpl(AddressRepository addressRepository) {
         this.addressRepository = addressRepository;
     }
 
     @Override
-    public Address findById(Long id) {
+    public AddressDTO findById(Long id) {
         Optional<Address> optionalAddress = this.addressRepository.findById(id);
         if(optionalAddress.isEmpty()){
             throw new NotFoundException(ErrorMessages.NO_RECORD_FOUND.getErrorMessage() + " Address { id : "+id+" }");
         }
-        return optionalAddress.get();
+        return mapper.map(optionalAddress.get(), AddressDTO.class);
     }
 
     @Override
-    public List<Address> findAll() {
-        return this.addressRepository.findAll();
+    public List<AddressDTO> findAll() {
+        return mapper.mapList(addressRepository.findAll(), AddressDTO.class);
     }
 
     @Override
-    public Address save(Address entity) {
-        return this.addressRepository.save(entity);
+    public AddressDTO save(AddressDTO dto) {
+        return mapper.map(
+                addressRepository.save(mapper.map(dto, Address.class)),
+                AddressDTO.class
+        );
     }
 
     @Override
-    public Address update(Address entity) {
-        return this.addressRepository.save(entity);
+    public AddressDTO update(AddressDTO dto) {
+        return mapper.map(
+                addressRepository.save(mapper.map(dto, Address.class)),
+                AddressDTO.class
+        );
     }
 
     @Override

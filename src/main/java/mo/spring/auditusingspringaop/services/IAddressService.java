@@ -1,6 +1,6 @@
 package mo.spring.auditusingspringaop.services;
 
-import mo.spring.auditusingspringaop.entities.Address;
+import mo.spring.auditusingspringaop.dto.AddressDTO;
 
-public interface IAddressService extends IService<Address> {
+public interface IAddressService extends IService<AddressDTO> {
 }

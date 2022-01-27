@@ -1,5 +1,9 @@
 package mo.spring.auditusingspringaop.services.impl;
 
+import mo.spring.auditusingspringaop.auditing.annotations.AfterInsert;
+import mo.spring.auditusingspringaop.dto.MemberDTO;
+import mo.spring.auditusingspringaop.dto.mapper.IMapper;
+import mo.spring.auditusingspringaop.entities.Address;
 import mo.spring.auditusingspringaop.entities.Member;
 
 import mo.spring.auditusingspringaop.exceptions.NotFoundException;
@@ -14,8 +18,10 @@ import java.util.Optional;
 
 @Service
 public class MemberServiceImpl implements IMemberService {
-
     private final MemberRepository memberRepository;
+
+    @Autowired
+    private IMapper mapper;
 
     @Autowired
     public MemberServiceImpl(MemberRepository memberRepository) {
@@ -23,27 +29,35 @@ public class MemberServiceImpl implements IMemberService {
     }
 
     @Override
-    public Member findById(Long id) {
+    public MemberDTO findById(Long id) {
         Optional<Member> memberOptional = memberRepository.findById(id);
         if(memberOptional.isEmpty()){
             throw new NotFoundException(ErrorMessages.NO_RECORD_FOUND.getErrorMessage() + " Member { id : "+id+" }");
         }
-        return memberOptional.get();
+
+        return mapper.map(memberOptional.get(), MemberDTO.class);
     }
 
     @Override
-    public List<Member> findAll() {
-        return memberRepository.findAll();
+    public List<MemberDTO> findAll() {
+        return mapper.mapList(memberRepository.findAll(), MemberDTO.class);
     }
 
     @Override
-    public Member save(Member entity) {
-        return this.memberRepository.save(entity);
+    @AfterInsert(targetClass = Address.class, targetMethodName = "get", returnClass = Member.class)
+    public MemberDTO save(MemberDTO dto) {
+        return mapper.map(
+                memberRepository.save(mapper.map(dto, Member.class)),
+                MemberDTO.class
+        );
     }
 
     @Override
-    public Member update(Member entity) {
-        return this.memberRepository.save(entity);
+    public MemberDTO update(MemberDTO dto) {
+        return mapper.map(
+                memberRepository.save(mapper.map(dto, Member.class)),
+                MemberDTO.class
+        );
     }
 
     @Override
