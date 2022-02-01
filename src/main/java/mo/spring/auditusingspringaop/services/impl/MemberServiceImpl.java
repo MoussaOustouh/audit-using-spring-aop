@@ -1,15 +1,17 @@
 package mo.spring.auditusingspringaop.services.impl;
 
-import mo.spring.auditusingspringaop.auditing.annotations.AfterInsert;
+import mo.spring.auditusingspringaop.traceability.strategy.annotations.TraceAfterDelete;
+import mo.spring.auditusingspringaop.traceability.strategy.annotations.TraceAfterCreate;
+import mo.spring.auditusingspringaop.traceability_services.impl.TraceMemberServiceImpl;
 import mo.spring.auditusingspringaop.dto.MemberDTO;
 import mo.spring.auditusingspringaop.dto.mapper.IMapper;
-import mo.spring.auditusingspringaop.entities.Address;
 import mo.spring.auditusingspringaop.entities.Member;
 
 import mo.spring.auditusingspringaop.exceptions.NotFoundException;
 import mo.spring.auditusingspringaop.exceptions.constants.ErrorMessages;
 import mo.spring.auditusingspringaop.repositories.MemberRepository;
 import mo.spring.auditusingspringaop.services.IMemberService;
+import mo.spring.auditusingspringaop.traceability.strategy.annotations.TraceAfterUpdate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -44,7 +46,12 @@ public class MemberServiceImpl implements IMemberService {
     }
 
     @Override
-    @AfterInsert(targetClass = Address.class, targetMethodName = "get", returnClass = Member.class)
+    @TraceAfterCreate(
+            targetServiceClass = TraceMemberServiceImpl.class,
+            targetMethodName = "traceAfterCreate",
+            targetMethodArgsClasses = {MemberDTO.class, String.class, String.class},
+            actionInfo = "trace after create description"
+    )
     public MemberDTO save(MemberDTO dto) {
         return mapper.map(
                 memberRepository.save(mapper.map(dto, Member.class)),
@@ -53,6 +60,12 @@ public class MemberServiceImpl implements IMemberService {
     }
 
     @Override
+    @TraceAfterUpdate(
+            targetServiceClass = TraceMemberServiceImpl.class,
+            targetMethodName = "traceAfterUpdate",
+            targetMethodArgsClasses = {MemberDTO.class, String.class, String.class},
+            actionInfo = "trace after update description"
+    )
     public MemberDTO update(MemberDTO dto) {
         return mapper.map(
                 memberRepository.save(mapper.map(dto, Member.class)),
@@ -61,6 +74,12 @@ public class MemberServiceImpl implements IMemberService {
     }
 
     @Override
+    @TraceAfterDelete(
+            targetServiceClass = TraceMemberServiceImpl.class,
+            targetMethodName = "traceAfterDelete",
+            targetMethodArgsClasses = {MemberDTO.class, String.class, String.class, Object[].class},
+            actionInfo = "trace after delete description"
+    )
     public void deleteById(Long id) {
         if(this.memberRepository.existsById(id)){
             this.memberRepository.deleteById(id);

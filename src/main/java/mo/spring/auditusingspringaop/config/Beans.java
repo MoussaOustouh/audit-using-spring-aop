@@ -1,8 +1,10 @@
 package mo.spring.auditusingspringaop.config;
 
+import mo.spring.auditusingspringaop.traceability.traces.info.UserInfo;
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.context.annotation.RequestScope;
 
 @Configuration
 public class Beans {
@@ -12,5 +14,11 @@ public class Beans {
         modelMapper.getConfiguration().setPreferNestedProperties(false);
 
         return modelMapper;
+    }
+
+    @Bean
+    @RequestScope
+    public UserInfo userInfo(){
+        return new UserInfo();
     }
 }
