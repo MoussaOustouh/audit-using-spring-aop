@@ -1,6 +1,10 @@
 package mo.spring.auditusingspringaop.traceability.traces;
 
-public class Trace {
+import java.io.Serializable;
+
+public class Trace  implements Serializable {
+    private static final long serialVersionUID = 4790844501835793234L;
+
     private final Long userId;
     private final String ipAddress;
 
