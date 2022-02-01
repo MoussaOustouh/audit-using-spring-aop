@@ -10,7 +10,7 @@ public class Trace  implements Serializable {
 
     private final Object entityState;
     private final String entityClassName;
-    private final Long entitId;
+    private final Long entityId;
 
     private final String action;
     private final String actionInfo;
@@ -20,7 +20,7 @@ public class Trace  implements Serializable {
         this.ipAddress = builder.ipAddress;
         this.entityState = builder.entityState;
         this.entityClassName  = builder.entityClassName;
-        this.entitId = builder.entitId;
+        this.entityId = builder.entityId;
         this.action = builder.action;
         this.actionInfo = builder.actionInfo;
     }
@@ -41,8 +41,8 @@ public class Trace  implements Serializable {
         return entityClassName;
     }
 
-    public Long getEntitId() {
-        return entitId;
+    public Long getEntityId() {
+        return entityId;
     }
 
     public String getAction() {
@@ -60,7 +60,7 @@ public class Trace  implements Serializable {
                 ", ipAddress='" + ipAddress + '\'' +
                 ", entityState=" + entityState +
                 ", entityClassName='" + entityClassName + '\'' +
-                ", entitId=" + entitId +
+                ", entityId=" + entityId +
                 ", action='" + action + '\'' +
                 ", actionInfo='" + actionInfo + '\'' +
                 '}';
@@ -72,16 +72,16 @@ public class Trace  implements Serializable {
 
         private final Object entityState;
         private final String entityClassName;
-        private final Long entitId;
+        private final Long entityId;
 
         private String action;
         private String actionInfo;
 
 
-        public Builder(Object entityState, String entityClassName, Long entitId) {
+        public Builder(Object entityState, String entityClassName, Long entityId) {
             this.entityState = entityState;
             this.entityClassName = entityClassName;
-            this.entitId = entitId;
+            this.entityId = entityId;
         }
 
         public Builder userId(Long userId){
@@ -108,6 +108,4 @@ public class Trace  implements Serializable {
             return new Trace(this);
         }
     }
-
-
 }
