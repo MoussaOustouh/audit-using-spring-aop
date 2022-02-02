@@ -5,6 +5,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.context.annotation.RequestScope;
+import org.springframework.web.reactive.function.client.WebClient;
 
 @Configuration
 public class Beans {
@@ -20,5 +21,11 @@ public class Beans {
     @RequestScope
     public UserInfo userInfo(){
         return new UserInfo();
+    }
+
+    @Bean
+    @RequestScope
+    WebClient webClient(){
+        return WebClient.create();
     }
 }

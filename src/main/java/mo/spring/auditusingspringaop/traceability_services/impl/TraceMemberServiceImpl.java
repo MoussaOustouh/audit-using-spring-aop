@@ -5,13 +5,24 @@ import mo.spring.auditusingspringaop.traceability.traces.Trace;
 import mo.spring.auditusingspringaop.traceability.traces.info.UserInfo;
 import mo.spring.auditusingspringaop.traceability_services.ITraceMemberService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
+import org.springframework.web.reactive.function.client.WebClient;
+import reactor.core.publisher.Mono;
 
 @Service
 public class TraceMemberServiceImpl implements ITraceMemberService {
 
     @Autowired
     private UserInfo userInfo;
+
+    @Autowired
+    private WebClient webClient;
+
+    @Value("${tracer-service-url}")
+    private String tracerServiceURI;
 
     @Override
     public void traceAfterCreate(MemberDTO object, String action, String actionInfo) {
@@ -26,6 +37,14 @@ public class TraceMemberServiceImpl implements ITraceMemberService {
         System.out.println("=== Trace ===========================================");
         System.out.println(trace);
         System.out.println("-----------------------------------------------------");
+
+        Mono<Trace> traceMono = webClient.post().uri(tracerServiceURI + "/traces")
+                .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
+                .body(Mono.just(trace), Trace.class)
+                .retrieve()
+                .bodyToMono(Trace.class);
+
+        traceMono.subscribe();
     }
 
     @Override
