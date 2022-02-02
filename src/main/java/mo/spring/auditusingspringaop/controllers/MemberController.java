@@ -81,17 +81,10 @@ public class MemberController {
             memberDTO.setAddresses(addressess);
         }
 
-//        for (AddressDTO a : memberDetails.getAddresses()) {
-//            a.setMember(memberDTO);
-//            a = addressService.save(a);
-//            addressess.add(a);
-//        }
-//        memberDTO.setAddresses(addressess);
-
         memberDTO.setEmailId(memberDetails.getEmailId());
         memberDTO.setLastName(memberDetails.getLastName());
         memberDTO.setFirstName(memberDetails.getFirstName());
-        MemberDTO updatedMember = memberService.save(memberDTO);
+        MemberDTO updatedMember = memberService.update(memberDTO);
 
         return ResponseEntity.ok(updatedMember);
     }

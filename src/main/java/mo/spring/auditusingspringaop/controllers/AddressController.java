@@ -51,7 +51,7 @@ public class AddressController {
         addressDTO.setCity(addressDetails.getCity());
         addressDTO.setZip(addressDetails.getZip());
 
-        addressDTO = addressService.save(addressDTO);
+        addressDTO = addressService.update(addressDTO);
         return ResponseEntity.ok(addressDTO);
     }
 
