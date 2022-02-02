@@ -75,7 +75,7 @@ public class MemberController {
         if(memberDetails.getAddresses() != null){
             for (AddressDTO a : memberDetails.getAddresses()) {
                 a.setMember(memberDTO);
-                a = addressService.save(a);
+                a = addressService.update(a);
                 addressess.add(a);
             }
             memberDTO.setAddresses(addressess);
@@ -83,7 +83,7 @@ public class MemberController {
 
 //        for (AddressDTO a : memberDetails.getAddresses()) {
 //            a.setMember(memberDTO);
-//            a = addressService.save(a);
+//            a = addressService.update(a);
 //            addressess.add(a);
 //        }
 //        memberDTO.setAddresses(addressess);
@@ -91,7 +91,7 @@ public class MemberController {
         memberDTO.setEmailId(memberDetails.getEmailId());
         memberDTO.setLastName(memberDetails.getLastName());
         memberDTO.setFirstName(memberDetails.getFirstName());
-        MemberDTO updatedMember = memberService.save(memberDTO);
+        MemberDTO updatedMember = memberService.update(memberDTO);
 
         return ResponseEntity.ok(updatedMember);
     }
