@@ -4,6 +4,7 @@ import mo.spring.auditusingspringaop.dto.MemberDTO;
 import mo.spring.auditusingspringaop.traceability.traces.Trace;
 import mo.spring.auditusingspringaop.traceability.traces.info.UserInfo;
 import mo.spring.auditusingspringaop.traceability_services.ITraceMemberService;
+import mo.spring.auditusingspringaop.utils.IUtilsGeneric;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
@@ -12,6 +13,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 
+import java.net.URI;
+
 @Service
 public class TraceMemberServiceImpl implements ITraceMemberService {
 
@@ -19,7 +22,7 @@ public class TraceMemberServiceImpl implements ITraceMemberService {
     private UserInfo userInfo;
 
     @Autowired
-    private WebClient webClient;
+    private IUtilsGeneric utilsGeneric;
 
     @Value("${tracer-service-url}")
     private String tracerServiceURI;
@@ -33,18 +36,8 @@ public class TraceMemberServiceImpl implements ITraceMemberService {
                 actionInfo,
                 userInfo.getUserId(),
                 userInfo.getIpAddress());
-
-        System.out.println("=== Trace ===========================================");
-        System.out.println(trace);
-        System.out.println("-----------------------------------------------------");
-
-        Mono<Trace> traceMono = webClient.post().uri(tracerServiceURI + "/traces")
-                .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
-                .body(Mono.just(trace), Trace.class)
-                .retrieve()
-                .bodyToMono(Trace.class);
-
-        traceMono.subscribe();
+//
+        utilsGeneric.sendTraceUsingWebClient(URI.create(tracerServiceURI + "/traces"), trace).subscribe();
     }
 
     @Override
@@ -57,9 +50,7 @@ public class TraceMemberServiceImpl implements ITraceMemberService {
                 userInfo.getUserId(),
                 userInfo.getIpAddress());
 
-        System.out.println("=== Trace ===========================================");
-        System.out.println(trace);
-        System.out.println("-----------------------------------------------------");
+        utilsGeneric.sendTraceUsingWebClient(URI.create(tracerServiceURI + "/traces"), trace).subscribe();
     }
 
     @Override
@@ -72,8 +63,6 @@ public class TraceMemberServiceImpl implements ITraceMemberService {
                 userInfo.getUserId(),
                 userInfo.getIpAddress());
 
-        System.out.println("=== Trace ===========================================");
-        System.out.println(trace);
-        System.out.println("-----------------------------------------------------");
+        utilsGeneric.sendTraceUsingWebClient(URI.create(tracerServiceURI + "/traces"), trace).subscribe();
     }
 }
