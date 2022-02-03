@@ -22,10 +22,6 @@ public class TraceAddressServiceImpl implements ITraceAddressService {
                 actionInfo,
                 userInfo.getUserId(),
                 userInfo.getIpAddress());
-
-        System.out.println("=== Trace ===========================================");
-        System.out.println(trace);
-        System.out.println("-----------------------------------------------------");
     }
 
     @Override
@@ -37,10 +33,6 @@ public class TraceAddressServiceImpl implements ITraceAddressService {
                 actionInfo,
                 userInfo.getUserId(),
                 userInfo.getIpAddress());
-
-        System.out.println("=== Trace ===========================================");
-        System.out.println(trace);
-        System.out.println("-----------------------------------------------------");
     }
 
     @Override
@@ -52,9 +44,5 @@ public class TraceAddressServiceImpl implements ITraceAddressService {
                 actionInfo,
                 userInfo.getUserId(),
                 userInfo.getIpAddress());
-
-        System.out.println("=== Trace ===========================================");
-        System.out.println(trace);
-        System.out.println("-----------------------------------------------------");
     }
 }

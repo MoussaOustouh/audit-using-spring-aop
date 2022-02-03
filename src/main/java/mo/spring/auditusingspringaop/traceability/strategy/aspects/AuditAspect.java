@@ -1,5 +1,6 @@
 package mo.spring.auditusingspringaop.traceability.strategy.aspects;
 
+import mo.spring.auditusingspringaop.traceability.constants.TraceActions;
 import mo.spring.auditusingspringaop.traceability.strategy.annotations.TraceAfterDelete;
 import mo.spring.auditusingspringaop.traceability.strategy.annotations.TraceAfterCreate;
 import mo.spring.auditusingspringaop.traceability.strategy.annotations.TraceAfterUpdate;
@@ -36,7 +37,7 @@ public class AuditAspect {
                     traceAfterInsert.targetServiceClass()
                         .getMethod(traceAfterInsert.targetMethodName(), traceAfterInsert.targetMethodArgsClasses())
                         .invoke(applicationContext.getBean(traceAfterInsert.targetServiceClass()),
-                                retVal, traceAfterInsert.action(), traceAfterInsert.actionInfo());
+                                retVal, TraceActions.CREATE, traceAfterInsert.actionInfo());
 
 //                } catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
 //                    e.printStackTrace();
@@ -60,7 +61,7 @@ public class AuditAspect {
                     traceAfterUpdate.targetServiceClass()
                             .getMethod(traceAfterUpdate.targetMethodName(), traceAfterUpdate.targetMethodArgsClasses())
                             .invoke(applicationContext.getBean(traceAfterUpdate.targetServiceClass()),
-                                    retVal, traceAfterUpdate.action(), traceAfterUpdate.actionInfo());
+                                    retVal, TraceActions.UPDATE, traceAfterUpdate.actionInfo());
 
 //                } catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
 //                    e.printStackTrace();
@@ -85,7 +86,7 @@ public class AuditAspect {
                     traceAfterDelete.targetServiceClass()
                             .getMethod(traceAfterDelete.targetMethodName(), traceAfterDelete.targetMethodArgsClasses())
                             .invoke(applicationContext.getBean(traceAfterDelete.targetServiceClass()),
-                                    retVal, traceAfterDelete.action(), traceAfterDelete.actionInfo(), joinPoint.getArgs());
+                                    retVal, TraceActions.DELETE, traceAfterDelete.actionInfo(), joinPoint.getArgs());
 //                } catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
 //                    e.printStackTrace();
 //                }
