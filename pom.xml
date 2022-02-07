@@ -12,7 +12,7 @@
     <artifactId>audit-using-spring-aop</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>audit-using-spring-aop</name>
-    <description>audit-using-spring-aop</description>
+    <description>traceability audit-using-spring-aop</description>
     <properties>
         <java.version>11</java.version>
     </properties>
@@ -89,6 +89,7 @@
                 </configuration>
             </plugin>
         </plugins>
+        <finalName>traceability-client</finalName>
     </build>
 
 </project>

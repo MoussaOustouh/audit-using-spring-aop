@@ -7,11 +7,7 @@ import mo.spring.auditusingspringaop.traceability_services.ITraceMemberService;
 import mo.spring.auditusingspringaop.utils.IUtilsGeneric;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
-import org.springframework.web.reactive.function.client.WebClient;
-import reactor.core.publisher.Mono;
 
 import java.net.URI;
 
