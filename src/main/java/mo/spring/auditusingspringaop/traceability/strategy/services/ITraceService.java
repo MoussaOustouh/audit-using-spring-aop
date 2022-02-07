@@ -1,4 +1,4 @@
-package mo.spring.auditusingspringaop.traceability.services;
+package mo.spring.auditusingspringaop.traceability.strategy.services;
 
 import mo.spring.auditusingspringaop.traceability.traces.Trace;
 
