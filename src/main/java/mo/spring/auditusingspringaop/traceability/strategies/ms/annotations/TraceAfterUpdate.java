@@ -1,4 +1,4 @@
-package mo.spring.auditusingspringaop.traceability.strategy.annotations;
+package mo.spring.auditusingspringaop.traceability.strategies.ms.annotations;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;

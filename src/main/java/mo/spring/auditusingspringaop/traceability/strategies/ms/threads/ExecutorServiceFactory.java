@@ -1,4 +1,4 @@
-package mo.spring.auditusingspringaop.traceability.strategy.threads;
+package mo.spring.auditusingspringaop.traceability.strategies.ms.threads;
 
 import java.util.concurrent.ExecutorService;
 

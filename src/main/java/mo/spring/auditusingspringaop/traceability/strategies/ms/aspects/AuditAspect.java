@@ -1,9 +1,9 @@
-package mo.spring.auditusingspringaop.traceability.strategy.aspects;
+package mo.spring.auditusingspringaop.traceability.strategies.ms.aspects;
 
 import mo.spring.auditusingspringaop.traceability.constants.TraceActions;
-import mo.spring.auditusingspringaop.traceability.strategy.annotations.TraceAfterDelete;
-import mo.spring.auditusingspringaop.traceability.strategy.annotations.TraceAfterCreate;
-import mo.spring.auditusingspringaop.traceability.strategy.annotations.TraceAfterUpdate;
+import mo.spring.auditusingspringaop.traceability.strategies.ms.annotations.TraceAfterCreate;
+import mo.spring.auditusingspringaop.traceability.strategies.ms.annotations.TraceAfterDelete;
+import mo.spring.auditusingspringaop.traceability.strategies.ms.annotations.TraceAfterUpdate;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;

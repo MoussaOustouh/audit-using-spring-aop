@@ -1,7 +1,7 @@
 package mo.spring.auditusingspringaop.services.impl;
 
-import mo.spring.auditusingspringaop.traceability.strategy.annotations.TraceAfterDelete;
-import mo.spring.auditusingspringaop.traceability.strategy.annotations.TraceAfterCreate;
+import mo.spring.auditusingspringaop.traceability.strategies.ms.annotations.TraceAfterDelete;
+import mo.spring.auditusingspringaop.traceability.strategies.ms.annotations.TraceAfterCreate;
 import mo.spring.auditusingspringaop.traceability_services.impl.TraceAddressServiceImpl;
 import mo.spring.auditusingspringaop.dto.AddressDTO;
 import mo.spring.auditusingspringaop.dto.mapper.IMapper;
@@ -10,7 +10,7 @@ import mo.spring.auditusingspringaop.exceptions.NotFoundException;
 import mo.spring.auditusingspringaop.exceptions.constants.ErrorMessages;
 import mo.spring.auditusingspringaop.repositories.AddressRepository;
 import mo.spring.auditusingspringaop.services.IAddressService;
-import mo.spring.auditusingspringaop.traceability.strategy.annotations.TraceAfterUpdate;
+import mo.spring.auditusingspringaop.traceability.strategies.ms.annotations.TraceAfterUpdate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
