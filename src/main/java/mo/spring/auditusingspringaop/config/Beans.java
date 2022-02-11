@@ -1,6 +1,8 @@
 package mo.spring.auditusingspringaop.config;
 
 import mo.spring.auditusingspringaop.traceability.strategies.ms.aspects.MSAuditAspect;
+import mo.spring.auditusingspringaop.traceability.threads.ExecutorServiceFactory;
+import mo.spring.auditusingspringaop.traceability.threads.ExecutorServiceFactoryImpl;
 import mo.spring.auditusingspringaop.traceability.traces.info.UserInfo;
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
@@ -30,8 +32,17 @@ public class Beans {
         return WebClient.create();
     }
 
+
     @Bean
-    MSAuditAspect msAuditAspect(){
-        return new MSAuditAspect();
+    public ExecutorServiceFactory executorServiceFactory(){
+        return new ExecutorServiceFactoryImpl();
+    }
+
+    @Bean
+    public MSAuditAspect auditAspect(){
+        MSAuditAspect msAuditAspect = new MSAuditAspect();
+        msAuditAspect.setExecutorServiceFactory(this.executorServiceFactory());
+
+        return msAuditAspect;
     }
 }
