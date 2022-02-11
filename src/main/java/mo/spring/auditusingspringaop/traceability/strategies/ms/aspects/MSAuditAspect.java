@@ -4,6 +4,7 @@ import mo.spring.auditusingspringaop.traceability.constants.TraceActions;
 import mo.spring.auditusingspringaop.traceability.strategies.ms.annotations.TraceAfterCreate;
 import mo.spring.auditusingspringaop.traceability.strategies.ms.annotations.TraceAfterDelete;
 import mo.spring.auditusingspringaop.traceability.strategies.ms.annotations.TraceAfterUpdate;
+//import mo.spring.auditusingspringaop.traceability.threads.ExecutorServiceFactory;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
@@ -27,10 +28,6 @@ public class MSAuditAspect {
 //            @Override
 //            public void run() {
 //                try {
-//                    Class<?> serviceClass = traceAfterInsert.targetServiceClass();
-//                    Object traceService = applicationContext.getBean(serviceClass);
-//                    serviceClass.getMethod(traceAfterInsert.targetMethodName(), traceAfterInsert.targetMethodArgsClasses())
-//                            .invoke(traceService, retVal, traceAfterInsert.action(), traceAfterInsert.actionInfo());
 
                     traceAfterInsert.targetServiceClass()
                         .getMethod(traceAfterInsert.targetMethodName(), traceAfterInsert.targetMethodArgsClasses())
@@ -51,10 +48,6 @@ public class MSAuditAspect {
 //            @Override
 //            public void run() {
 //                try {
-//                    Class<?> serviceClass = traceAfterUpdate.targetServiceClass();
-//                    Object traceService = applicationContext.getBean(serviceClass);
-//                    serviceClass.getMethod(traceAfterUpdate.targetMethodName(), traceAfterUpdate.targetMethodArgsClasses())
-//                            .invoke(traceService, retVal, traceAfterUpdate.action(), traceAfterUpdate.actionInfo());
 
                     traceAfterUpdate.targetServiceClass()
                             .getMethod(traceAfterUpdate.targetMethodName(), traceAfterUpdate.targetMethodArgsClasses())
@@ -75,16 +68,12 @@ public class MSAuditAspect {
 //            @Override
 //            public void run() {
 //                try {
-//                    Class<?> serviceClass = traceAfterDelete.targetServiceClass();
-//                    Object traceService = applicationContext.getBean(serviceClass);
-//                    serviceClass.getMethod(traceAfterDelete.targetMethodName(), traceAfterDelete.targetMethodArgsClasses())
-//                            .invoke(traceService, retVal, traceAfterDelete.action(), traceAfterDelete.actionInfo(), joinPoint.getArgs());
-
 
                     traceAfterDelete.targetServiceClass()
                             .getMethod(traceAfterDelete.targetMethodName(), traceAfterDelete.targetMethodArgsClasses())
                             .invoke(applicationContext.getBean(traceAfterDelete.targetServiceClass()),
                                     retVal, TraceActions.DELETE, traceAfterDelete.actionInfo(), joinPoint.getArgs());
+
 //                } catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
 //                    e.printStackTrace();
 //                }
