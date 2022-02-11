@@ -9,14 +9,22 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 @Component
-@Configuration
+//@Configuration
 @EnableConfigurationProperties()
-@ConfigurationProperties(prefix = "threads")
+@ConfigurationProperties(prefix = "traceability.threads")
 public class ExecutorServiceFactoryImpl implements ExecutorServiceFactory {
-
-    private int threadPoolSize;
-
     private ExecutorService service;
+
+    private boolean enableMultiThreadsExecution = false;
+    private int threadPoolSize = 1;
+
+    public boolean isEnableMultiThreadsExecution() {
+        return enableMultiThreadsExecution;
+    }
+
+    public void setEnableMultiThreadsExecution(boolean enableMultiThreadsExecution) {
+        this.enableMultiThreadsExecution = enableMultiThreadsExecution;
+    }
 
     public int getThreadPoolSize() {
         return threadPoolSize;

@@ -4,7 +4,7 @@ import mo.spring.auditusingspringaop.traceability.constants.TraceActions;
 import mo.spring.auditusingspringaop.traceability.strategies.ms.annotations.TraceAfterCreate;
 import mo.spring.auditusingspringaop.traceability.strategies.ms.annotations.TraceAfterDelete;
 import mo.spring.auditusingspringaop.traceability.strategies.ms.annotations.TraceAfterUpdate;
-//import mo.spring.auditusingspringaop.traceability.threads.ExecutorServiceFactory;
+import mo.spring.auditusingspringaop.traceability.threads.ExecutorServiceFactory;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
@@ -19,8 +19,16 @@ public class MSAuditAspect {
     @Autowired
     private ApplicationContext applicationContext;
 
-//    @Autowired
-//    private ExecutorServiceFactory executorServiceFactory;
+    @Autowired
+    private ExecutorServiceFactory executorServiceFactory;
+
+    public ExecutorServiceFactory getExecutorServiceFactory() {
+        return executorServiceFactory;
+    }
+
+    public void setExecutorServiceFactory(ExecutorServiceFactory executorServiceFactory) {
+        this.executorServiceFactory = executorServiceFactory;
+    }
 
     @AfterReturning(value = "@annotation(traceAfterInsert)", returning = "retVal")
     public void afterInsertInvoked(JoinPoint joinPoint, Object retVal, TraceAfterCreate traceAfterInsert) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
