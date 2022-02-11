@@ -1,9 +1,9 @@
-package mo.spring.auditusingspringaop.traceability_services.impl;
+package mo.spring.auditusingspringaop.traceability_ms_services.impl;
 
 import mo.spring.auditusingspringaop.dto.AddressDTO;
 import mo.spring.auditusingspringaop.traceability.traces.Trace;
 import mo.spring.auditusingspringaop.traceability.traces.info.UserInfo;
-import mo.spring.auditusingspringaop.traceability_services.ITraceAddressService;
+import mo.spring.auditusingspringaop.traceability_ms_services.ITraceAddressService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

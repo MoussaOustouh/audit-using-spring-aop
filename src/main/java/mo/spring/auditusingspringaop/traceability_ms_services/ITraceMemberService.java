@@ -1,4 +1,4 @@
-package mo.spring.auditusingspringaop.traceability_services;
+package mo.spring.auditusingspringaop.traceability_ms_services;
 
 import mo.spring.auditusingspringaop.dto.MemberDTO;
 import mo.spring.auditusingspringaop.traceability.strategies.ms.services.ITraceService;
