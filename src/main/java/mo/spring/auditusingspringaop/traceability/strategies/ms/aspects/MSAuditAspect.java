@@ -10,13 +10,11 @@ import org.aspectj.lang.annotation.Aspect;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
-import org.springframework.stereotype.Component;
 
 import java.lang.reflect.InvocationTargetException;
 
 @Aspect
-@Component
-public class AuditAspect {
+public class MSAuditAspect {
     @Autowired
     private ApplicationContext applicationContext;
 

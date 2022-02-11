@@ -1,5 +1,6 @@
 package mo.spring.auditusingspringaop.config;
 
+import mo.spring.auditusingspringaop.traceability.strategies.ms.aspects.MSAuditAspect;
 import mo.spring.auditusingspringaop.traceability.traces.info.UserInfo;
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
@@ -27,5 +28,10 @@ public class Beans {
     @RequestScope
     WebClient webClient(){
         return WebClient.create();
+    }
+
+    @Bean
+    MSAuditAspect msAuditAspect(){
+        return new MSAuditAspect();
     }
 }
