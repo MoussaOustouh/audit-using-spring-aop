@@ -1,4 +1,4 @@
-package mo.spring.auditusingspringaop.traceability.constants;
+package mo.spring.auditusingspringaop.traceability.strategies.ms.constants;
 
 public class TraceActions {
     public static final String CREATE = "CREATE";
