@@ -1,6 +1,6 @@
 package mo.spring.auditusingspringaop.traceability.strategies.ms.aspects;
 
-import mo.spring.auditusingspringaop.traceability.strategies.ms.constants.TraceActions;
+import mo.spring.auditusingspringaop.traceability.constants.TraceActions;
 import mo.spring.auditusingspringaop.traceability.strategies.ms.annotations.TraceAfterCreate;
 import mo.spring.auditusingspringaop.traceability.strategies.ms.annotations.TraceAfterDelete;
 import mo.spring.auditusingspringaop.traceability.strategies.ms.annotations.TraceAfterUpdate;
