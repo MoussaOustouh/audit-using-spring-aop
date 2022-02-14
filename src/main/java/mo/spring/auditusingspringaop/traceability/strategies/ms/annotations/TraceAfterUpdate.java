@@ -1,5 +1,7 @@
 package mo.spring.auditusingspringaop.traceability.strategies.ms.annotations;
 
+import mo.spring.auditusingspringaop.traceability.constants.TraceActions;
+
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -19,7 +21,7 @@ public @interface TraceAfterUpdate {
     String targetMethodName();
     Class<?>[] targetMethodArgsClasses();
 
-    String action() default "UPDATE";
+    String action() default TraceActions.UPDATE;
     String actionInfo() default "";
 
 //    Class<?> returnClass();
