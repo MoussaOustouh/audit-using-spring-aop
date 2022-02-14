@@ -19,16 +19,16 @@ public class MSAuditAspect {
     @Autowired
     private ApplicationContext applicationContext;
 
-    @Autowired
-    private ExecutorServiceFactory executorServiceFactory;
-
-    public ExecutorServiceFactory getExecutorServiceFactory() {
-        return executorServiceFactory;
-    }
-
-    public void setExecutorServiceFactory(ExecutorServiceFactory executorServiceFactory) {
-        this.executorServiceFactory = executorServiceFactory;
-    }
+//    @Autowired
+//    private ExecutorServiceFactory executorServiceFactory;
+//
+//    public ExecutorServiceFactory getExecutorServiceFactory() {
+//        return executorServiceFactory;
+//    }
+//
+//    public void setExecutorServiceFactory(ExecutorServiceFactory executorServiceFactory) {
+//        this.executorServiceFactory = executorServiceFactory;
+//    }
 
     @AfterReturning(value = "@annotation(traceAfterInsert)", returning = "retVal")
     public void afterInsertInvoked(JoinPoint joinPoint, Object retVal, TraceAfterCreate traceAfterInsert) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {

@@ -28,7 +28,7 @@ public class Beans {
     }
 
     @Bean
-    @RequestScope
+//    @RequestScope
     WebClient webClient(){
         return WebClient.create();
     }
