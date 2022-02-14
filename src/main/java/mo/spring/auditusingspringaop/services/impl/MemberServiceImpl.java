@@ -48,7 +48,6 @@ public class MemberServiceImpl implements IMemberService {
     @Override
     @TraceAfterCreate(
             targetServiceClass = TraceMemberServiceImpl.class,
-            targetMethodName = "traceAfterCreate",
             targetMethodArgsClasses = {MemberDTO.class, String.class, String.class},
             actionInfo = "trace after create description"
     )
@@ -62,7 +61,6 @@ public class MemberServiceImpl implements IMemberService {
     @Override
     @TraceAfterUpdate(
             targetServiceClass = TraceMemberServiceImpl.class,
-            targetMethodName = "traceAfterUpdate",
             targetMethodArgsClasses = {MemberDTO.class, String.class, String.class},
             actionInfo = "trace after update description"
     )
@@ -76,7 +74,6 @@ public class MemberServiceImpl implements IMemberService {
     @Override
     @TraceAfterDelete(
             targetServiceClass = TraceMemberServiceImpl.class,
-            targetMethodName = "traceAfterDelete",
             targetMethodArgsClasses = {MemberDTO.class, String.class, String.class, Object[].class},
             actionInfo = "trace after delete description"
     )

@@ -46,7 +46,6 @@ public class AddressServiceImpl implements IAddressService {
     @Override
     @TraceAfterCreate(
             targetServiceClass = TraceAddressServiceImpl.class,
-            targetMethodName = "traceAfterCreate",
             targetMethodArgsClasses = {AddressDTO.class, String.class, String.class},
             actionInfo = "trace after create description"
     )
@@ -60,7 +59,6 @@ public class AddressServiceImpl implements IAddressService {
     @Override
     @TraceAfterUpdate(
             targetServiceClass = TraceAddressServiceImpl.class,
-            targetMethodName = "traceAfterUpdate",
             targetMethodArgsClasses = {AddressDTO.class, String.class, String.class},
             actionInfo = "trace after update description"
     )
@@ -74,7 +72,6 @@ public class AddressServiceImpl implements IAddressService {
     @Override
     @TraceAfterDelete(
             targetServiceClass = TraceAddressServiceImpl.class,
-            targetMethodName = "traceAfterDelete",
             targetMethodArgsClasses = {AddressDTO.class, String.class, String.class, Object[].class},
             actionInfo = "trace after delete description"
     )
