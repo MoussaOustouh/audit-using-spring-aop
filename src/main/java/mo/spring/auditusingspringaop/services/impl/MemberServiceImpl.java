@@ -1,8 +1,13 @@
 package mo.spring.auditusingspringaop.services.impl;
 
-import mo.spring.auditusingspringaop.traceability.strategies.ms.annotations.TraceAfterDelete;
-import mo.spring.auditusingspringaop.traceability.strategies.ms.annotations.TraceAfterCreate;
-import mo.spring.auditusingspringaop.traceability_ms_services.impl.TraceMemberServiceImpl;
+//import mo.spring.auditusingspringaop.traceability.strategies.ms.annotations.TraceAfterDelete;
+//import mo.spring.auditusingspringaop.traceability.strategies.ms.annotations.TraceAfterCreate;
+//import mo.spring.auditusingspringaop.traceability.strategies.ms.annotations.TraceAfterUpdate;
+//import mo.spring.auditusingspringaop.traceability_ms_services.impl.TraceMemberServiceImpl;
+import mo.spring.auditusingspringaop.traceability.strategies.oos.annotations.TraceAfterDelete;
+import mo.spring.auditusingspringaop.traceability.strategies.oos.annotations.TraceAfterCreate;
+import mo.spring.auditusingspringaop.traceability.strategies.oos.annotations.TraceAfterUpdate;
+import mo.spring.auditusingspringaop.traceability_oos_services.TraceServiceObjectImpl;
 import mo.spring.auditusingspringaop.dto.MemberDTO;
 import mo.spring.auditusingspringaop.dto.mapper.IMapper;
 import mo.spring.auditusingspringaop.entities.Member;
@@ -11,7 +16,6 @@ import mo.spring.auditusingspringaop.exceptions.NotFoundException;
 import mo.spring.auditusingspringaop.exceptions.constants.ErrorMessages;
 import mo.spring.auditusingspringaop.repositories.MemberRepository;
 import mo.spring.auditusingspringaop.services.IMemberService;
-import mo.spring.auditusingspringaop.traceability.strategies.ms.annotations.TraceAfterUpdate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -46,10 +50,18 @@ public class MemberServiceImpl implements IMemberService {
     }
 
     @Override
+//    from 'strategies.ms'
+//    @TraceAfterCreate(
+//            targetServiceClass = TraceMemberServiceImpl.class,
+//            targetMethodArgsClasses = {MemberDTO.class, String.class, String.class},
+//            actionInfo = "trace after create description"
+//    )
     @TraceAfterCreate(
-            targetServiceClass = TraceMemberServiceImpl.class,
-            targetMethodArgsClasses = {MemberDTO.class, String.class, String.class},
-            actionInfo = "trace after create description"
+            targetServiceClass = TraceServiceObjectImpl.class,
+            targetMethodArgsClasses = {Class.class, Object.class, Long.class, String.class, String.class},
+            actionInfo = "trace after create description",
+            tracingObjectClass = MemberDTO.class,
+            tracingObjectIdFieldName = "id"
     )
     public MemberDTO save(MemberDTO dto) {
         return mapper.map(
@@ -59,10 +71,18 @@ public class MemberServiceImpl implements IMemberService {
     }
 
     @Override
+//    from 'strategies.ms'
+//    @TraceAfterUpdate(
+//            targetServiceClass = TraceMemberServiceImpl.class,
+//            targetMethodArgsClasses = {MemberDTO.class, String.class, String.class},
+//            actionInfo = "trace after update description"
+//    )
     @TraceAfterUpdate(
-            targetServiceClass = TraceMemberServiceImpl.class,
-            targetMethodArgsClasses = {MemberDTO.class, String.class, String.class},
-            actionInfo = "trace after update description"
+            targetServiceClass = TraceServiceObjectImpl.class,
+            targetMethodArgsClasses = {Class.class, Object.class, Long.class, String.class, String.class},
+            actionInfo = "trace after update description",
+            tracingObjectClass = MemberDTO.class,
+            tracingObjectIdFieldName = "id"
     )
     public MemberDTO update(MemberDTO dto) {
         return mapper.map(
@@ -72,10 +92,18 @@ public class MemberServiceImpl implements IMemberService {
     }
 
     @Override
+//    from 'strategies.ms'
+//    @TraceAfterDelete(
+//            targetServiceClass = TraceMemberServiceImpl.class,
+//            targetMethodArgsClasses = {MemberDTO.class, String.class, String.class, Object[].class},
+//            actionInfo = "trace after delete description"
+//    )
     @TraceAfterDelete(
-            targetServiceClass = TraceMemberServiceImpl.class,
-            targetMethodArgsClasses = {MemberDTO.class, String.class, String.class, Object[].class},
-            actionInfo = "trace after delete description"
+            targetServiceClass = TraceServiceObjectImpl.class,
+            targetMethodArgsClasses = {Class.class, Object.class, String.class, String.class, Object[].class},
+            actionInfo = "trace after delete description",
+            tracingObjectClass = MemberDTO.class,
+            tracingObjectIdFieldName = "id"
     )
     public void deleteById(Long id) {
         if(this.memberRepository.existsById(id)){
