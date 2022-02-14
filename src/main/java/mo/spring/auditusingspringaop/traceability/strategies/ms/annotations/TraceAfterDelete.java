@@ -1,5 +1,6 @@
 package mo.spring.auditusingspringaop.traceability.strategies.ms.annotations;
 
+import mo.spring.auditusingspringaop.traceability.constants.TargetMethodNames;
 import mo.spring.auditusingspringaop.traceability.constants.TraceActions;
 
 import java.lang.annotation.Documented;
@@ -18,7 +19,7 @@ import java.lang.annotation.Target;
 public @interface TraceAfterDelete {
     Class<?> targetServiceClass();
 
-    String targetMethodName();
+    String targetMethodName() default TargetMethodNames.traceAfterDelete;
     Class<?>[] targetMethodArgsClasses();
 
     String action() default TraceActions.DELETE;
