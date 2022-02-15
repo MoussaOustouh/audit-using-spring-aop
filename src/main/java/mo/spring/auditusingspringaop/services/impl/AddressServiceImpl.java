@@ -7,7 +7,7 @@ package mo.spring.auditusingspringaop.services.impl;
 import mo.spring.auditusingspringaop.traceability.strategies.oos.annotations.TraceAfterDelete;
 import mo.spring.auditusingspringaop.traceability.strategies.oos.annotations.TraceAfterCreate;
 import mo.spring.auditusingspringaop.traceability.strategies.oos.annotations.TraceAfterUpdate;
-import mo.spring.auditusingspringaop.traceability_oos_services.TraceServiceObjectImpl;
+import mo.spring.auditusingspringaop.services_oos_traceability.TraceServiceObjectImpl;
 import mo.spring.auditusingspringaop.dto.AddressDTO;
 import mo.spring.auditusingspringaop.dto.mapper.IMapper;
 import mo.spring.auditusingspringaop.entities.Address;
