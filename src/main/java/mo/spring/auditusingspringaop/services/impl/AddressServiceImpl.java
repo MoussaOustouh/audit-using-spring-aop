@@ -56,7 +56,6 @@ public class AddressServiceImpl implements IAddressService {
 //    )
     @TraceAfterCreate(
             targetServiceClass = TraceServiceObjectImpl.class,
-            targetMethodArgsClasses = {Class.class, Object.class, Long.class, String.class, String.class},
             actionInfo = "trace after create description",
             tracingObjectClass = AddressDTO.class,
             tracingObjectIdFieldName = "id"
@@ -77,7 +76,6 @@ public class AddressServiceImpl implements IAddressService {
 //    )
     @TraceAfterUpdate(
             targetServiceClass = TraceServiceObjectImpl.class,
-            targetMethodArgsClasses = {Class.class, Object.class, Long.class, String.class, String.class},
             actionInfo = "trace after update description",
             tracingObjectClass = AddressDTO.class,
             tracingObjectIdFieldName = "id"
@@ -98,7 +96,6 @@ public class AddressServiceImpl implements IAddressService {
 //    )
     @TraceAfterDelete(
             targetServiceClass = TraceServiceObjectImpl.class,
-            targetMethodArgsClasses = {Class.class, Object.class, String.class, String.class, Object[].class},
             actionInfo = "trace after delete description",
             tracingObjectClass = AddressDTO.class,
             tracingObjectIdFieldName = "id"

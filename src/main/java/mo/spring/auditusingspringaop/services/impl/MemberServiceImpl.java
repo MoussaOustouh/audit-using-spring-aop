@@ -58,7 +58,6 @@ public class MemberServiceImpl implements IMemberService {
 //    )
     @TraceAfterCreate(
             targetServiceClass = TraceServiceObjectImpl.class,
-            targetMethodArgsClasses = {Class.class, Object.class, Long.class, String.class, String.class},
             actionInfo = "trace after create description",
             tracingObjectClass = MemberDTO.class,
             tracingObjectIdFieldName = "id"
@@ -79,7 +78,6 @@ public class MemberServiceImpl implements IMemberService {
 //    )
     @TraceAfterUpdate(
             targetServiceClass = TraceServiceObjectImpl.class,
-            targetMethodArgsClasses = {Class.class, Object.class, Long.class, String.class, String.class},
             actionInfo = "trace after update description",
             tracingObjectClass = MemberDTO.class,
             tracingObjectIdFieldName = "id"
@@ -100,7 +98,6 @@ public class MemberServiceImpl implements IMemberService {
 //    )
     @TraceAfterDelete(
             targetServiceClass = TraceServiceObjectImpl.class,
-            targetMethodArgsClasses = {Class.class, Object.class, String.class, String.class, Object[].class},
             actionInfo = "trace after delete description",
             tracingObjectClass = MemberDTO.class,
             tracingObjectIdFieldName = "id"

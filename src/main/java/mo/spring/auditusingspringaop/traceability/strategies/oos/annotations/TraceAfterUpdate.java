@@ -20,7 +20,7 @@ public @interface TraceAfterUpdate {
     Class<?> targetServiceClass();
 
     String targetMethodName() default TargetMethodNames.traceAfterUpdate;
-    Class<?>[] targetMethodArgsClasses();
+    Class<?>[] targetMethodArgsClasses() default {Class.class, Object.class, Long.class, String.class, String.class};
 
     String action() default TraceActions.UPDATE;
     String actionInfo() default "";

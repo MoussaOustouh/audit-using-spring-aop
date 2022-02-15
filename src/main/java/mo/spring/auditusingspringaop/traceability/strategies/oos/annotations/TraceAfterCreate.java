@@ -19,7 +19,7 @@ import java.lang.annotation.Target;
 public @interface TraceAfterCreate {
     Class<?> targetServiceClass();
     String targetMethodName() default TargetMethodNames.traceAfterCreate;
-    Class<?>[] targetMethodArgsClasses();
+    Class<?>[] targetMethodArgsClasses() default {Class.class, Object.class, Long.class, String.class, String.class};
 
     String action() default TraceActions.CREATE;
     String actionInfo() default "";

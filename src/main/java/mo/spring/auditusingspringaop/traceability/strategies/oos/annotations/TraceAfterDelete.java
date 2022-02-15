@@ -20,7 +20,7 @@ public @interface TraceAfterDelete {
     Class<?> targetServiceClass();
 
     String targetMethodName() default TargetMethodNames.traceAfterDelete;
-    Class<?>[] targetMethodArgsClasses();
+    Class<?>[] targetMethodArgsClasses() default {Class.class, Object.class, String.class, String.class, Object[].class};
 
     String action() default TraceActions.DELETE;
     String actionInfo() default "";
