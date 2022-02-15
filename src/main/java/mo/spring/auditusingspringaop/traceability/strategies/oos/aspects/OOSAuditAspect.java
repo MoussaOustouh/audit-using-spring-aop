@@ -31,7 +31,7 @@ public class OOSAuditAspect {
 //    }
 
     @AfterReturning(value = "@annotation(traceAfterCreate)", returning = "retVal")
-    public void afterInsertInvoked(JoinPoint joinPoint, Object retVal, TraceAfterCreate traceAfterCreate) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+    public void afterCreateInvoked(JoinPoint joinPoint, Object retVal, TraceAfterCreate traceAfterCreate) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
 //        Runnable runnable = new Runnable() {
 //            @Override
 //            public void run() {

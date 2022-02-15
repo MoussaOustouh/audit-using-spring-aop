@@ -31,7 +31,7 @@ public class MSAuditAspect {
 //    }
 
     @AfterReturning(value = "@annotation(traceAfterInsert)", returning = "retVal")
-    public void afterInsertInvoked(JoinPoint joinPoint, Object retVal, TraceAfterCreate traceAfterInsert) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+    public void afterCreateInvoked(JoinPoint joinPoint, Object retVal, TraceAfterCreate traceAfterInsert) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
 //        Runnable runnable = new Runnable() {
 //            @Override
 //            public void run() {
